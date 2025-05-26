@@ -1,0 +1,58 @@
+<p
+  class="message"
+  *ngIf="message"
+  [class.error]="message.includes('Por favor')"
+  [class.success]="!message.includes('Por favor')">
+  {{ message }}
+</p>
+
+<form [formGroup]="tareaForm" (ngSubmit)="submit()" class="tarea-form">
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Título</mat-label>
+    <input
+      matInput
+      formControlName="titulo"
+      placeholder="Ingrese el título" />
+    <mat-error
+      *ngIf="
+    tareaForm.get('titulo')?.hasError('required') &&
+    (tareaForm.get('titulo')?.touched || tareaForm.get('titulo')?.dirty) &&
+    !tareaForm.pristine
+  ">
+      El título es obligatorio.
+    </mat-error>
+
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Descripción</mat-label>
+    <textarea
+      matInput
+      formControlName="descripcion"
+      placeholder="Ingrese la descripción"></textarea>
+    <mat-error
+      *ngIf="
+    tareaForm.get('descripcion')?.hasError('required') &&
+    (tareaForm.get('descripcion')?.touched || tareaForm.get('descripcion')?.dirty) &&
+    !tareaForm.pristine
+  ">
+      La descripción es obligatoria.
+    </mat-error>
+
+  </mat-form-field>
+
+  <div class="button-container">
+    <button mat-raised-button color="primary" type="submit"
+      [disabled]="loading">
+      Guardar
+    </button>
+
+    <mat-progress-spinner
+      *ngIf="loading"
+      mode="indeterminate"
+      diameter="30"
+      strokeWidth="4"
+      class="spinner"></mat-progress-spinner>
+  </div>
+</form>

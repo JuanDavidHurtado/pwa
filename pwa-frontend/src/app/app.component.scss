@@ -1,0 +1,27 @@
+.main-nav {
+  background-color: #1976d2; // azul Material primario
+  padding: 10px 20px;
+  display: flex;
+  gap: 20px;
+  font-family: 'Roboto', sans-serif;
+  
+  a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    &.active-link {
+      background-color: white;
+      color: #1976d2;
+      font-weight: 700;
+    }
+  }
+}
